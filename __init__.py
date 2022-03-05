@@ -1,4 +1,5 @@
-from mycroft import MycroftSkill, intent_file_handler
+from mycroft import MycroftSkill, intent_file_handler,intent_handler
+from adapt.intent import IntentBuilder
 
 
 class EasyShopping(MycroftSkill):
@@ -13,6 +14,7 @@ class EasyShopping(MycroftSkill):
     def handle_view_goods(self, message):
         self.speak('Taking a photo now. Please wait a second for me to get the result.')
         self.speak('I find some goods here, you can ask me whatever goods you want.')
+    @intent_handler(IntentBuilder('AskItemBrand').require('Brand').build())
 
     @intent_handler('is.there.any.goods.intent')
     def handle_is_there_any_goods(self, message):
